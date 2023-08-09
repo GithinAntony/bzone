@@ -1,0 +1,94 @@
+{% load static %}
+{% include "includes/header.html" %}
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="span8">
+                <div class="inner-heading">
+                    <h2>Programs List</h2>
+                </div>
+            </div>
+            <div class="span4">
+                <ul class="breadcrumb">
+                    <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+                    <li class="active">Programs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="span12 align-center">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li
+                                {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                 <div class="row">
+                <div class="span6">
+                    {% for i in programs %}
+                    <h4><b>Program: <u>{{ i.program_name }} </u></b></h4>  
+                    {% endfor %}
+                </div>
+                
+                <div class="span6" style="text-align: right">
+                      {% for i in programs %}
+                <a class="btn btn-warning btn-md" href="/judges/programs/publish-results/{{ i.id }}">Publish Results</a>
+                    {% endfor %}
+                </div>
+                </div>
+                
+                <div class="span12">
+                    <br/>
+                </div>
+                <table class="table table-hover" id="myTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Candidates Name</th>
+                        <th scope="col">Chest Number</th>
+                        <th scope="col">Attended</th>
+                        <th scope="col">Marks (#/10)</th>
+                        <th scope="col">Remarks</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in programsapplied %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.candidate }}</td>
+                        <td>#{{ i.id }}</td>
+                        <td>
+                            <select id="attended_select_{{ i.id }}">
+                                <option value="yes" {% if i.attended == 'yes' %} selected {% endif %}>Yes</option>
+                                <option value="no" {% if i.attended == 'no' %} selected {% endif %}>No</option>
+                            </select>
+                        </td>
+                        <td>
+                            <input type="number" min="0" max="10" step="any" value="{{ i.marks }}" required placeholder="Marks" id="attended_marks_{{ i.id }}"/>
+                        </td>
+                         <td>
+                             <textarea placeholder="remarks" id="attended_remarks_{{ i.id }}" minlength="0"  maxlength="100">{{ i.remarks }}</textarea>
+                         </td>
+                        <td>
+                            <input type="button" value="apply" class="btn btn-success btn-sm"
+                                   onclick="apply_marks({{ i.id }})">
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% include "includes/footer.html" %}

@@ -1,0 +1,78 @@
+{% load static %}
+{% include "includes/header.html" %}
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="span8">
+                <div class="inner-heading">
+                    <h2>Results</h2>
+                </div>
+            </div>
+            <div class="span4">
+                <ul class="breadcrumb">
+                    <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+                    <li class="active">Programs</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="span12">
+                <div class="span12 align-center">
+                    {% if messages %}
+                    <ul class="messages">
+                        {% for message in messages %}
+                        <li
+                                {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    {% endif %}
+                </div>
+                <div class="span12">
+                    {% for i in programs %}
+                    <h4><b>Program: <u>{{ i.program_name }} </u></b></h4>  <b><a
+                        href="/judges/programs/publish-results/{{ i.id }}">Publish Results</a></b>
+                    {% endfor %}
+                </div>
+                <div class="span12">
+                    <br/>
+                </div>
+                <table class="table table-bordered" id="myTable">
+                    <thead>
+                    <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Candidates Name</th>
+                        <th scope="col">Chest Number</th>
+                        <th scope="col">Attended</th>
+                        <th scope="col">Marks (#/10)</th>
+                        <th scope="col">Remarks</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for i in programsapplied %}
+                    <tr>
+                        <td>{{ forloop.counter }}</td>
+                        <td>{{ i.candidate }}</td>
+                        <td>#{{ i.id }}</td>
+                        <td>
+                            {{ i.attended }}
+                        </td>
+                        <td>
+                            {{ i.marks }}
+                        </td>
+                        <td>
+                            {{ i.remarks }}
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</section>
+{% include "includes/footer.html" %}

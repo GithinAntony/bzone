@@ -1,0 +1,51 @@
+   {% load static %} 
+   {% include "includes/header.html" %}
+        <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span8">
+            <div class="inner-heading">
+              <h2>{{ request.session.user_type }} Login</h2>
+            </div>
+          </div>
+          <div class="span4">
+            <ul class="breadcrumb">
+              <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+              <li class="active">Contact</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section id="content">
+      <div class="container">
+          
+<div class="jumbotron">
+        <h1 style="font-size: 42px">Hi, {{ request.session.username }}</h1>
+        <p class="lead">As a candidate you can view and apply to the programs and View Results.</p>
+        <a class="btn btn-large btn-success" href="/candidates/programs/view">View Programs</a>
+</div>
+      <hr>
+   <!-- Example row of columns -->
+      <div class="row-fluid">
+
+
+         <div class="span4">
+          <h4><u>Programs</u></h4>
+          <p style="font-weight: bold !important; font-size: 20px">{{ programs.count }}</p>
+       </div>
+          
+                   <div class="span4">
+          <h4><u>Programs Applied</u></h4>
+          <p style="font-weight: bold !important; font-size: 20px">{{ programs_applied.count }}</p>
+       </div>
+
+           <div class="span4">
+          <h4><u>Avaliable Judges</u></h4>
+          <p style="font-weight: bold !important; font-size: 20px">{{ judges_details.count }}</p>
+       </div>
+      </div>
+          
+</div>
+</section>
+    {% include "includes/footer.html" %}

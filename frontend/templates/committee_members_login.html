@@ -1,0 +1,65 @@
+{% load static %}
+{% include "includes/header.html" %}
+<section id="inner-headline">
+    <div class="container">
+        <div class="row">
+            <div class="span8">
+                <div class="inner-heading">
+                    <h2>Committee Members Login</h2>
+                </div>
+            </div>
+            <div class="span4">
+                <ul class="breadcrumb">
+                    <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+                    <li class="active">Contact</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+<section id="content">
+    <div class="container">
+        <div class="row">
+            <div class="span6 offset3">
+                <form acton="" class="contactForm" method="POST" novalidate >
+                    {% csrf_token %}
+                    <div class="span12 align-center">
+                        {% if messages %}
+                        <ul class="messages">
+                            {% for message in messages %}
+                            <li
+                                    {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}
+                            </li>
+                            {% endfor %}
+                        </ul>
+                        {% endif %}
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="{{ form.username.id_for_label }}">Username</label>
+                        <div class="controls">
+                            {{ form.username }}
+                            {{ form.username.errors }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label" for="{{ form.password.id_for_label }}">Password</label>
+                        <div class="controls">
+                            {{ form.password }}
+                            {{ form.password.errors }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <button type="submit" class="btn form-submit-button">Sign in</button>
+                        </div>
+                        <p class="aligncenter margintop20">
+                            Not Registered? <a href="/committee-members/register">Register here</a>
+                        </p>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <p>&nbsp;</p><p>&nbsp;</p><p>&nbsp;</p>
+</section>
+{% include "includes/footer.html" %}

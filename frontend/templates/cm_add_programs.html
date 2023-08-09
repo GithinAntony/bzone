@@ -1,0 +1,83 @@
+   {% load static %}
+   {% include "includes/header.html" %}
+ <section id="inner-headline">
+      <div class="container">
+        <div class="row">
+          <div class="span8">
+            <div class="inner-heading">
+              <h2>Add Programs</h2>
+            </div>
+          </div>
+          <div class="span4">
+            <ul class="breadcrumb">
+              <li><a href="#"><i class="icon-home"></i></a><i class="icon-angle-right"></i></li>
+              <li class="active">Programs</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="content">
+      <div class="container">
+        <div class="row">
+          <div class="span6 offset3" >
+
+         <form acton="" method="POST" class="contactForm" novalidate >
+             {% csrf_token %}
+                  <div class="control-group">
+                    <label class="control-label" for="{{ form.program_name.id_for_label }}">Program Name</label>
+                    <div class="controls">
+                            {{ form.program_name }}
+                            {{ form.program_name.errors }}
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <label class="control-label" for="{{ form.details.id_for_label }}">Details</label>
+                    <div class="controls">
+                            {{ form.details }}
+                            {{ form.details.errors }}
+                    </div>
+                  </div>
+                 <div class="control-group">
+                    <label class="control-label" for="{{ form.date.id_for_label }}">Date</label>
+                    <div class="controls">
+                            {{ form.date }}
+                            {{ form.date.errors }}
+                    </div>
+                  </div>
+                 <div class="control-group">
+                    <label class="control-label" for="{{ form.time.id_for_label }}">Time</label>
+                    <div class="controls">
+                            {{ form.time }}
+                            {{ form.time.errors }}
+                    </div>
+                  </div>
+                 <div class="control-group">
+                    <label class="control-label" for="{{ form.venue.id_for_label }}">Venue</label>
+                    <div class="controls">
+                            {{ form.venue }}
+                            {{ form.venue.errors }}
+                    </div>
+                  </div>
+             <div class="control-group">
+                    <label class="control-label" for="{{ form.judges.id_for_label }}">Judges</label>
+                    <div class="controls">
+                            {{ form.judges }}
+                            {{ form.judges.errors }}
+                    </div>
+                  </div>
+                  <div class="control-group">
+                    <div class="controls">
+                      <button type="submit" class="btn form-submit-button">Add Programs</button>
+                    </div>
+                    <p class="aligncenter margintop20">
+                      Not Registered? <a href="/committee-members/register" >Register here</a>
+                    </p>
+                  </div>
+                </form>
+</div>
+</div>
+</div>
+</section>
+    {% include "includes/footer.html" %}
